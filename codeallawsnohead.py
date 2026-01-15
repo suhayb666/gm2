@@ -252,8 +252,8 @@ def extract_product_data(url):
         # Filter to allowed keys
         allowed_keys = [
             'Product Title', 'Product Subtitle', 'Manufacturer Info', 'SKU', 
-            'Other Names', 'Description', 'Notes', 'Replaces', 'Description 2', 
-            'MSRP', 'Discount', 'Sale Price', 'Condition', 'Install Time', 'Applications'
+            'Other Names', 'Description', 'Description 2', 'Replaces',  
+            'MSRP', 'Discount', 'Sale Price', 'Condition', 'Install Time', 'Applications', 'Notes'
         ]
         filtered_data = {k: data[k] for k in allowed_keys if k in data}
         
@@ -364,8 +364,14 @@ def process_excel_file(input_file, output_file=None):
 
 # Main execution
 if __name__ == "__main__":
-    input_file = r'C:\Users\askso\Cursor Projects\23sites\gm\wheelslist.xlsx'
-    output_file = r'C:\Users\askso\Cursor Projects\23sites\gm\wheelslist-Updated.xlsx'
+
+    # Input file path for AWS (Linux path)
+    input_dir = "/home/ubuntu/gm2"
+    input_file = os.path.join(input_dir, "wheelslist.xlsx")
+    
+    # Output file path for AWS (Linux path)
+    output_dir = "/home/ubuntu/gm2"
+    output_file = os.path.join(output_dir, "wheelslist-updated.xlsx")
     
     print("="*70)
     print("Starting sequential web scraping process (headless mode)")
@@ -380,4 +386,5 @@ if __name__ == "__main__":
     
     print("\n" + "="*70)
     print("Process completed!")
+
     print("="*70)
